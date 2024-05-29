@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: wish
-          image: MYAPP:latest
+          image: deekshithsn/wishlist
           ports:
             - containerPort: 5000
 ---
@@ -35,7 +35,3 @@ spec:
       protocol: TCP
       port: 1003
       targetPort: 5000
-      # If you set the `spec.type` field to `NodePort` and you want a specific port number,
-
-      # you can specify a value in the `spec.ports[*].nodePort` field.
-      nodePort:
