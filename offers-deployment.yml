@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  offers
+  namespace: ms
+  labels:
+    app:  offers
+spec:
+  selector:
+    matchLabels:
+      app: offers
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  offers
+    spec:
+      - name:  offers
+        image:  brkcd/offers
+        ports:
+        - containerPort:  1001
+          name:  offers
+  ---
+
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: offers
+    namespace: default
+  spec:
+    selector:
+      app: offers
+    type: ClusterIP
+    ports:
+    - name: offers
+      protocol: TCP
+      port: 1001
+      targetPort: 1001
